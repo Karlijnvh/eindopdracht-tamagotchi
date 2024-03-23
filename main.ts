@@ -25,6 +25,7 @@ let TimerHonger = 0
 let Toestand = 0
 Toestand = 1
 TimerHonger = input.runningTime() + 5000
+music.setBuiltInSpeakerEnabled(false)
 basic.forever(function () {
     if (Toestand == 1) {
         music.stopAllSounds()
