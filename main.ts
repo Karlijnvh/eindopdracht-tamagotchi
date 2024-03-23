@@ -25,14 +25,6 @@ let TimerHonger = 0
 let Toestand = 0
 Toestand = 1
 TimerHonger = input.runningTime() + 5000
-loops.everyInterval(500, function () {
-    if (Toestand == 2) {
-        pins.analogWritePin(AnalogPin.P2, 1023)
-        basic.pause(500)
-        pins.analogWritePin(AnalogPin.P2, 0)
-        basic.pause(500)
-    }
-})
 basic.forever(function () {
     if (Toestand == 1) {
         music.stopAllSounds()
@@ -44,6 +36,12 @@ basic.forever(function () {
     } else if (Toestand == 2) {
         music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.LoopingInBackground)
         music.rest(music.beat(BeatFraction.Whole))
+        while (Toestand == 2) {
+            pins.analogWritePin(AnalogPin.P2, 1023)
+            basic.pause(500)
+            pins.analogWritePin(AnalogPin.P2, 0)
+            basic.pause(500)
+        }
         if (input.runningTime() >= TimerComa) {
             Toestand = 3
             music.stopAllSounds()
