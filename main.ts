@@ -24,7 +24,6 @@ let TimerMoe = 0
 let TimerHonger = 0
 let Toestand = 0
 Toestand = 1
-pins.digitalWritePin(DigitalPin.P2, 1)
 TimerHonger = input.runningTime() + 5000
 loops.everyInterval(500, function () {
     if (Toestand == 2) {
