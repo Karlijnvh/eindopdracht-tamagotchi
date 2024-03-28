@@ -47,7 +47,7 @@ basic.forever(function () {
     } else if (Toestand == 3) {
         pins.analogWritePin(AnalogPin.P2, 0)
         music.play(music.stringPlayable("E D C C E D C D ", 67), music.PlaybackMode.LoopingInBackground)
-        basic.showNumber(kompaswaarde)
+        basic.showNumber(input.compassHeading())
         if (kompaswaarde == input.compassHeading() - 45) {
             Toestand = 5
             Timer = input.runningTime() + 6000
