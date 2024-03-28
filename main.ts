@@ -48,7 +48,7 @@ basic.forever(function () {
         pins.analogWritePin(AnalogPin.P2, 0)
         music.play(music.stringPlayable("E D C C E D C D ", 67), music.PlaybackMode.LoopingInBackground)
         basic.showNumber(input.compassHeading())
-        if (kompaswaarde == input.compassHeading() - 45) {
+        if (input.compassHeading() == kompaswaarde - 45) {
             Toestand = 5
             Timer = input.runningTime() + 6000
         }
