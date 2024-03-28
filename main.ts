@@ -11,7 +11,7 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onGesture(Gesture.Shake, function () {
     if (Toestand == 4) {
-        TimerMoe = TimerMoe / 2
+        Timer = Timer / 2
     }
 })
 input.onButtonPressed(Button.B, function () {
@@ -20,12 +20,12 @@ input.onButtonPressed(Button.B, function () {
         Timer = input.runningTime() + 5000
     }
 })
-let TimerMoe = 0
 let Timer = 0
 let Toestand = 0
 Toestand = 1
 Timer = input.runningTime() + 5000
 music.setBuiltInSpeakerEnabled(false)
+let kompaswaarde = input.compassHeading()
 basic.forever(function () {
     if (Toestand == 1) {
         music.stopAllSounds()
@@ -47,8 +47,8 @@ basic.forever(function () {
     } else if (Toestand == 3) {
         pins.analogWritePin(AnalogPin.P2, 0)
         music.play(music.stringPlayable("E D C C E D C D ", 67), music.PlaybackMode.LoopingInBackground)
-        basic.showNumber(input.compassHeading())
-        if (input.compassHeading() == 315) {
+        basic.showNumber(kompaswaarde)
+        if (kompaswaarde == input.compassHeading() - 45) {
             Toestand = 5
             Timer = input.runningTime() + 6000
         }
@@ -60,9 +60,6 @@ basic.forever(function () {
             Timer = input.runningTime() + 5000
         }
     } else if (Toestand == 5) {
-        if (input.compassHeading() < 300) {
-            Timer = input.runningTime() + 6000
-        }
         if (input.runningTime() >= Timer) {
             music.stopAllSounds()
             Toestand = 1
