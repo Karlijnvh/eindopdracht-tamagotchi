@@ -43,6 +43,7 @@ basic.forever(function () {
         if (input.runningTime() >= Timer) {
             Toestand = 3
             music.stopAllSounds()
+            kompaswaarde = input.compassHeading()
         }
     } else if (Toestand == 3) {
         pins.analogWritePin(AnalogPin.P2, 0)
@@ -60,6 +61,9 @@ basic.forever(function () {
             Timer = input.runningTime() + 5000
         }
     } else if (Toestand == 5) {
+        if (input.compassHeading() < kompaswaarde - 55 || input.compassHeading() < kompaswaarde - 35) {
+            Timer = input.runningTime() + 6000
+        }
         if (input.runningTime() >= Timer) {
             music.stopAllSounds()
             Toestand = 1
